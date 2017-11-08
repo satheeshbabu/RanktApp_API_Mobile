@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="movieNotFound" xml:space="preserve">
-    <value>No movies were found with that Id.</value>
+  <data name="controllers.medialist.error.no_media_lists_found" xml:space="preserve">
+    <value>No media lists were found.</value>
   </data>
-  <data name="noMediaList" xml:space="preserve">
-    <value>No Media Lists were found.</value>
-  </data>
-  <data name="tempData" xml:space="preserve">
-    <value>This is For Temporary Data</value>
+  <data name="controllers.movie.error.movie_not_found" xml:space="preserve">
+    <value>No movie was found for provided ID.</value>
   </data>
 </root>

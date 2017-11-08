@@ -8,6 +8,7 @@ using DataModel.Movies;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
+using Rankt.Api.Controllers;
 using Trakker.Api.Controllers;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
@@ -26,7 +27,7 @@ namespace TrakkerApp.Api.Controllers
         private readonly IRelationRepository _relationRepository;
         private readonly IMovieRepository _movieRepository;
         private readonly IMemoryCache _memoryCache;
-        private readonly IStringLocalizer<MediaListController> _localizer;
+        private readonly IStringLocalizer<SharedResources> _localizer;
 
         private const string CacheMovie = "CACHE:MOVIE";
 
@@ -34,7 +35,7 @@ namespace TrakkerApp.Api.Controllers
             IRelationRepository relationRepository,
             IMovieRepository movieRepository,
             IMemoryCache memoryCache, 
-            IStringLocalizer<MediaListController> localizer)
+            IStringLocalizer<SharedResources> localizer)
         {
             _repository = repository;
             _relationRepository = relationRepository;
@@ -51,7 +52,7 @@ namespace TrakkerApp.Api.Controllers
             
             if (mediaLists == null || mediaLists.Count == 0)
             {
-                string message = _localizer["noMediaList"];
+                string message = _localizer["controllers.medialist.error.no_media_lists_found"];
                 var token = new JObject { { "message", message } };
 
                 var errorContent = Content(token.ToString(), "application/json");
@@ -68,7 +69,8 @@ namespace TrakkerApp.Api.Controllers
             var jObject = new JObject
             {
                 {"number_media_lists", mediaLists.Count},
-                { "media_lists", array}
+                { "media_lists", array},
+                {"tempt", _localizer["controllers.medialist.error.no_media_lists_found"].ToString() }
             };
 
             Console.WriteLine("Returning List of " + mediaLists.Count+ " media Lists");

@@ -21,12 +21,12 @@ namespace Rankt.Api.Controllers
     {
         private readonly IMovieRepository _repository;
 
-        private readonly IStringLocalizer<MovieController> _localizer;
+        private readonly IStringLocalizer<SharedResources> _localizer;
         private readonly IMemoryCache _memoryCache;
 
         private const string CacheMovie = "CACHE:MOVIE";
 
-        public MovieController(IMovieRepository repository, IStringLocalizer<MovieController> localizer, IMemoryCache memoryCache)
+        public MovieController(IMovieRepository repository, IStringLocalizer<SharedResources> localizer, IMemoryCache memoryCache)
         {
             _repository = repository;
             _localizer = localizer;
@@ -42,7 +42,7 @@ namespace Rankt.Api.Controllers
 
             if (movies == null || movies.Count == 0)
             {
-                string message = _localizer["movieNotFound"];
+                string message = _localizer["controllers.movie.movie_not_found"];
                 var token = new JObject { { "message", message } };
 
                 var errorContent = Content(token.ToString(), "application/json");
@@ -59,9 +59,7 @@ namespace Rankt.Api.Controllers
             var jObject = new JObject
             {
                 {"number_movies", movies.Count},
-                { "movies", array},
-                {"temp", _localizer["tempData"].ToString() },
-                {"notfound", _localizer["movieNotFound"].ToString() }
+                { "movies", array}
             };
 
             Console.WriteLine("Returning List of " + movies.Count+ " movies");
