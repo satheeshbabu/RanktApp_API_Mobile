@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DatabaseVersioningTool
 {
-    internal class Migration
+    public class Migration
     {
         public string Name { get; private set; }
         public string FilePath { get; private set; }

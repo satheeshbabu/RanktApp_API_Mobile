@@ -54,6 +54,11 @@ namespace DatabaseVersioningTool
             }
         }
 
+        public static void RunMigrations(string connectionString, IReadOnlyList<Migration> migrations)
+        {
+           new VersionManager(connectionString).ExecuteMigrations(migrations);
+        }
+
         public static void DropAllTables(string connectionString)
         {
             string output = new VersionManager(connectionString).ExecuteDropTables();

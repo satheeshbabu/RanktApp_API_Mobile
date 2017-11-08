@@ -35,9 +35,8 @@ namespace Rankt.Api.Controllers
 
         // GET: api/values
         [HttpGet]
-        public async Task<ActionResult> Get([FromQuery]QueryPagenationParameters pageParameters)
+        public async Task<ActionResult> GetAllMovies([FromQuery]QueryPagenationParameters pageParameters)
         {
-            var list = _localizer.GetAllStrings();
             var movies = await _repository.GetAllMovies();
 
             if (movies == null || movies.Count == 0)
@@ -70,7 +69,7 @@ namespace Rankt.Api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(long id)
+        public async Task<ActionResult> GetById(long id)
         {
 //            var isExist = _memoryCache.TryGetValue(CacheMovie + id, out Movie movie);
 //            if (!isExist)

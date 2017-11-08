@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Trakker.Api.Repositories.Movies;
 using Trakker.Api.Singletons;
 using Trakker.Api.StartUp;
-using TrakkerApp.Api.Connection;
-using TrakkerApp.Api.Repositories;
 using TrakkerApp.Api.Repositories.Lists;
 using TrakkerApp.Api.Repositories.Relations;
-using TrakkerApp.Api.StartUp;
 
-namespace Trakker.Api
+namespace Rankt.Api
 {
     public class Startup
     {

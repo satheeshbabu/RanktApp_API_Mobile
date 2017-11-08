@@ -30,6 +30,14 @@ namespace DatabaseVersioningTool
             return output;
         }
 
+        public void ExecuteMigrations(IReadOnlyList<Migration> migrations)
+        {
+            foreach (Migration migration in migrations)
+            {
+                _dbHelper.ExecuteMigration(migration.GetContent());
+            }
+        }
+
         public IReadOnlyList<string> ExecuteMigrations()
         {
             var output = new List<string>();
