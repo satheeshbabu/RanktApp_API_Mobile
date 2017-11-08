@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.DatabaseVersionin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rankt.Tests.DbTests", "..\WebAPI\Rankt.Tests.DbTests\Rankt.Tests.DbTests.csproj", "{38988CEA-EC91-4291-8AB7-E665DE95A1D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rankt.Tests.ControllerTests", "Rankt.Tests.ControllerTests\Rankt.Tests.ControllerTests.csproj", "{260830D2-1C04-4165-8DD6-1AD5F285793A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rankt.Tests.ControllerTests", "..\WebAPI\Rankt.Tests.ControllerTests\Rankt.Tests.ControllerTests.csproj", "{260830D2-1C04-4165-8DD6-1AD5F285793A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
