@@ -53,6 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DropTables\001_Drop_All_Tables.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Migrations\001_CategoryTableandBasicCategories.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

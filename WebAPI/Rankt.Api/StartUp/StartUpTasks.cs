@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Trakker.Api.Repositories.Genres.MovieGenres;
+using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Repositories.Categories;
 using TrakkerApp.Api.Repositories.CategoryRelations;
 using TrakkerApp.Api.Repositories.Genres.MovieGenres;
@@ -17,21 +18,24 @@ namespace Trakker.Api.StartUp
 
         public static async Task TasksOnStartUp(IConfiguration configuration, IMemoryCache memoryCache)
         {
-            var cts = new CancellationTokenSource();
-            memoryCache.Set(CANCELLATION_TOKEN_KEY, cts);
-
-
             var categoryMapping = new CategoryMapping(new CategoryRepository(configuration),
                 new CategoryRelRepository(configuration));
 
             await categoryMapping.PopulateAllCategories();
-            
-            await MovieGenrePopulating.PopulateTmdbMovieGenres(new MovieGenreRepository(configuration, memoryCache));
-            await TVShowGenrePopulating.PopulateTmdbTVShowGenres(new TVShowGenreRepository(configuration));
 
-            await new MoviePopulating(configuration, memoryCache).PopulateManyMovies();
+            var movieRepo = new MovieRepository(configuration, memoryCache);
 
-            await new TVShowPopulating(configuration, memoryCache).PopulateManyTVShowsTask();
+            var movies = await movieRepo.GetAllMovies();
+
+            if (movies.Count != 0)
+            {
+                await MovieGenrePopulating.PopulateTmdbMovieGenres(new MovieGenreRepository(configuration,
+                    memoryCache));
+                await TVShowGenrePopulating.PopulateTmdbTVShowGenres(new TVShowGenreRepository(configuration));
+
+                await new MoviePopulating(configuration, memoryCache).PopulateManyMovies();
+
+                await new TVShowPopulating(configuration, memoryCache).PopulateManyTVShowsTask();
 //
 //            var entity = await BaseModelResolver.ResolveBaseEntity(Movie.ENTITY_CATEGORY_ID, 32);
 //            if (entity is Movie movie)
@@ -53,6 +57,7 @@ namespace Trakker.Api.StartUp
 //            await new MediaListPopulating(connectionString).CreateImdbTVShowList("ls051600015",
 //                "250: Top TV Series, HBO, Showtime:");
 
+            }
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using DataModel.Movies;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
 using Trakker.Api.Repositories.Movies;
@@ -15,7 +12,7 @@ using TrakkerApp.Api.Controllers.HelperClasses;
 // For more information on enabling Web API for empty projects,
 //visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Trakker.Api.Controllers
+namespace Rankt.Api.Controllers
 {
     [EnableCors("SiteCorsPolicy")]
     [Produces("application/json")]
@@ -40,6 +37,7 @@ namespace Trakker.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> Get([FromQuery]QueryPagenationParameters pageParameters)
         {
+            var list = _localizer.GetAllStrings();
             var movies = await _repository.GetAllMovies();
 
             if (movies == null || movies.Count == 0)
@@ -61,7 +59,9 @@ namespace Trakker.Api.Controllers
             var jObject = new JObject
             {
                 {"number_movies", movies.Count},
-                { "movies", array}
+                { "movies", array},
+                {"temp", _localizer["tempData"].ToString() },
+                {"notfound", _localizer["movieNotFound"].ToString() }
             };
 
             Console.WriteLine("Returning List of " + movies.Count+ " movies");

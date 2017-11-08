@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.DataModel", "..\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.DatabaseVersioningTool", "..\Utilities\DatabaseVersioningTool\Utilities.DatabaseVersioningTool.csproj", "{B7E8E68F-1248-4310-AD25-6D321583FD66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rankt.Tests.DbTests", "..\WebAPI\Rankt.Tests.DbTests\Rankt.Tests.DbTests.csproj", "{38988CEA-EC91-4291-8AB7-E665DE95A1D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B7E8E68F-1248-4310-AD25-6D321583FD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7E8E68F-1248-4310-AD25-6D321583FD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7E8E68F-1248-4310-AD25-6D321583FD66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38988CEA-EC91-4291-8AB7-E665DE95A1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38988CEA-EC91-4291-8AB7-E665DE95A1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38988CEA-EC91-4291-8AB7-E665DE95A1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38988CEA-EC91-4291-8AB7-E665DE95A1D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

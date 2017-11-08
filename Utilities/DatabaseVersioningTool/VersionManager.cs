@@ -16,6 +16,19 @@ namespace DatabaseVersioningTool
             _dbHelper = new DBHelper(connectionString);
         }
 
+        public string ExecuteDropTables()
+        {
+            var output = "";
+
+            IReadOnlyList<Migration> migrations = GetDeleteScript();
+
+            foreach (Migration migration in migrations)
+            {
+                _dbHelper.ExecuteMigration(migration.GetContent());
+                output += "Dropped all tables";
+            }
+            return output;
+        }
 
         public IReadOnlyList<string> ExecuteMigrations()
         {
@@ -85,6 +98,16 @@ namespace DatabaseVersioningTool
                 .Where(x => x.Version > currentVersion)
                 .OrderBy(x => x.Version)
                 .ToList();
+        }
+
+        private IReadOnlyList<Migration> GetDeleteScript()
+        {
+            IReadOnlyList <Migration> migrations = new DirectoryInfo(@"DropTables\")
+                .GetFiles()
+                .Select(x => new Migration(x))
+                .ToList();
+
+            return migrations;
         }
 
 
