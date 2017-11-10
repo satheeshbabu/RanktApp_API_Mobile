@@ -27,7 +27,7 @@ namespace Trakker.Api.StartUp
 
             var movies = await movieRepo.GetAllMovies();
 
-            if (movies.Count != 0)
+            if (!configuration.GetConnectionString("DefaultConnection").Contains("test"))
             {
                 await MovieGenrePopulating.PopulateTmdbMovieGenres(new MovieGenreRepository(configuration,
                     memoryCache));

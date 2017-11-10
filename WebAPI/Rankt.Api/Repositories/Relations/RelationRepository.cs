@@ -4,6 +4,7 @@ using System.Data;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Linq;
+using Common.Model.Movies;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;

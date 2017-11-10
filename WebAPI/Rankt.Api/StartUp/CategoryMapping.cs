@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Common.Model.Movies;
 using DataModel.Attributes;
 using DataModel.Base;
 using DataModel.Genres;

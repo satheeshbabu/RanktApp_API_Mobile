@@ -63,8 +63,8 @@ namespace Rankt.Api
             //Need to initialize the list of cache
             TrakkerCache.InitializeCacheList();
 
-            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
-            string cs = Configuration["ConnectionStrings:DefaultConnection"];
+//            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
+//            string cs = Configuration["ConnectionStrings:DefaultConnection"];
 
             var loadDataTask = StartUpTasks.TasksOnStartUp(Configuration, cache);
             loadDataTask.Wait();

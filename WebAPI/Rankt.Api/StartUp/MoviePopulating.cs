@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Common.Model.Movies;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;
 using DataModel.Genres;
@@ -102,7 +103,8 @@ namespace TrakkerApp.Api.StartUp
                     string.IsNullOrEmpty(o["id"]+"") ? 0 : Int32.Parse(o["id"]+""),
                     o["imdb_id"] + "",
                     o["poster_path"] + "",
-                    o["backdrop_path"] + "");
+                    o["backdrop_path"] + "",
+                    DateTime.UtcNow);
 
                 await _movieRepository.Save(movie);
 

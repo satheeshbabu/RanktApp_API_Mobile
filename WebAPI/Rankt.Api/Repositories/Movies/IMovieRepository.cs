@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Model.Movies;
 using DataModel.Movies;
 using TrakkerApp.Api.Repositories;
 

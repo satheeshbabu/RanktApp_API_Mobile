@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Model.Movies;
 using DataModel.Base;
 using DataModel.Genres;
 using DataModel.Movies;
@@ -33,6 +34,7 @@ namespace Trakker.Api.Repositories.Movies
         private const string FIELD_IMDB_ID = "IMDB_ID";
         private const string FIELD_TMDB_POSTER_PATH = "TMDB_Poster_Path";
         private const string FIELD_TMDB_BACKDROP_PATH = "TMDB_Backdrop_Path";
+        private const string FIELD_DATE_UPDATED = "Date_Updated";
 
         private const string CACHE_MOVIE_ID = "CACHE:MOVIE:ID";
         private const string CACHE_MOVIE_TMDB_ID = "CACHE:MOVIE:TMDBID";
@@ -49,7 +51,8 @@ namespace Trakker.Api.Repositories.Movies
             TABLE_NAME + "." + FIELD_TMDB_ID + ", " +
             TABLE_NAME + "." + FIELD_IMDB_ID + ", " +
             TABLE_NAME + "." + FIELD_TMDB_POSTER_PATH + ", " +
-            TABLE_NAME + "." + FIELD_TMDB_BACKDROP_PATH + " ";
+            TABLE_NAME + "." + FIELD_TMDB_BACKDROP_PATH + ", " +
+            TABLE_NAME + "." + FIELD_DATE_UPDATED + " ";
        
 
         public MovieRepository(IConfiguration configuration, IMemoryCache memoryCache) : base(configuration, memoryCache)
@@ -62,13 +65,18 @@ namespace Trakker.Api.Repositories.Movies
             return "SELECT " + (limitResults == 0 ? "" : " TOP " + limitResults + " ") + ALL_FIELDS + " FROM " + TABLE_NAME;
         }
 
-        private async Task<IEnumerable<Movie>> GetList(SqlConnection connection, string strSql)
+        private async Task<IEnumerable<Movie>> GetList(SqlConnection connection, string strSql
+            , List<SqlParameter> parameters)
         {
             var movies = new List<Movie>();
             try
             {
                 await connection.OpenAsync();
                 var command = new SqlCommand(strSql, connection);
+                foreach (var sqlParameter in parameters)
+                {
+                    command.Parameters.Add(sqlParameter);
+                }
                 var reader = await command.ExecuteReaderAsync();
                 if (reader.HasRows)
                 {
@@ -132,7 +140,8 @@ namespace Trakker.Api.Repositories.Movies
                 long.Parse(reader[FIELD_TMDB_ID].ToString()),
                 reader[FIELD_IMDB_ID].ToString(),
                 reader[FIELD_TMDB_POSTER_PATH].ToString(),
-                reader[FIELD_TMDB_BACKDROP_PATH].ToString());
+                reader[FIELD_TMDB_BACKDROP_PATH].ToString(),
+                DateTime.Parse(reader[FIELD_DATE_UPDATED].ToString()));
 
             return movie;
         }
@@ -160,19 +169,21 @@ namespace Trakker.Api.Repositories.Movies
         }
         private async Task<Movie> GetSingleByDesiredParameter(string field, object passedInParameter)
         {
+            var sqlParameters = new List<SqlParameter>();
+
             var sqlQuery = GetBasicSelectSql(1) + " WHERE " +
-                               TABLE_NAME + "." + field + " = ";
+                               TABLE_NAME + "." + field + " = @passedInParameter";
                 
                 if (field.Equals(FIELD_NAME) || field.Equals(FIELD_IMDB_ID))
                 {
-                    sqlQuery += "'" + passedInParameter + "'";
+                    sqlParameters.Add(new SqlParameter("@passedInParameter", passedInParameter));
                 }
                 else if (field.Equals(ID_FIELD_NAME) || field.Equals(FIELD_TMDB_ID))
                 {
-                    sqlQuery += "'" + Convert.ToInt64(passedInParameter) + "'";
+                sqlParameters.Add(new SqlParameter("@passedInParameter", Convert.ToInt64(passedInParameter)));
                 }
 
-                var movies = (await GetList(GetConnection(), sqlQuery)).ToList();
+                var movies = (await GetList(GetConnection(), sqlQuery, sqlParameters)).ToList();
 
             return movies.Count > 0 ? movies[0] : null;
         }
@@ -181,7 +192,7 @@ namespace Trakker.Api.Repositories.Movies
         {
             var sqlQuery = GetBasicSelectSql(0);
 
-            return (await GetList(GetConnection(), sqlQuery)).ToList();
+            return (await GetList(GetConnection(), sqlQuery, new List<SqlParameter>())).ToList();
         }
 
         public Task<IEnumerable<Movie>> GetAllMoviesByUserFromToken(string token)
@@ -219,9 +230,10 @@ namespace Trakker.Api.Repositories.Movies
                                          ", " + FIELD_TMDB_ID +
                                          ", " + FIELD_IMDB_ID +
                                          ", " + FIELD_TMDB_POSTER_PATH +
-                                         ", " + FIELD_TMDB_BACKDROP_PATH + ") OUTPUT INSERTED.ID VALUES " +
+                                         ", " + FIELD_TMDB_BACKDROP_PATH +
+                                         ", " + FIELD_DATE_UPDATED + ") OUTPUT INSERTED.ID VALUES " +
                                          "(@name, @overview, @releaseDate, @runTime, " +
-                                         "@tmdbid, @imdbid, @tmdbPosterPath, @tmdbBackdropPath)";
+                                         "@tmdbid, @imdbid, @tmdbPosterPath, @tmdbBackdropPath, @dateUpdated)";
 
                 var parameters = new List<SqlParameter>
                 {
@@ -234,7 +246,8 @@ namespace Trakker.Api.Repositories.Movies
                     new SqlParameter("@tmdbid", entity.TmdbId),
                     new SqlParameter("@imdbid", entity.ImdbId),
                     new SqlParameter("@tmdbPosterPath", entity.TmdbPosterPath),
-                    new SqlParameter("@tmdbBackdropPath", entity.TmdbBackdropPath)
+                    new SqlParameter("@tmdbBackdropPath", entity.TmdbBackdropPath),
+                    new SqlParameter("@dateUpdated", DateTime.UtcNow)
                 };
 
                 var command = new SqlCommand(insertSql, connection);

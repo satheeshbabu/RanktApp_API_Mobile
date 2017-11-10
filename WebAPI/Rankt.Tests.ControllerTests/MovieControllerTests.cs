@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using DataModel.Movies;
+using Common.Model.Movies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,8 +56,10 @@ namespace Rankt.Tests.ControllerTests
         [Fact]
         public async Task Movie_Found_For_Movie_Id()
         {
-            var myMovie = Movie.Instanciate("It", "Bad clown", DateTime.Now, 123, 12345, "tt123123", "posterPath",
-                "backdropPath");
+            var yearToReturn = 2015;
+
+            var myMovie = Movie.Instanciate("It", "Bad clown", new DateTime(yearToReturn, 10,10), 123, 12345, "tt123123", "posterPath",
+                "backdropPath", DateTime.Now);
 
             var mockRepo = new Mock<IMovieRepository>();
             mockRepo.Setup(r => r.GetById(It.Is<long>( c => c == 2))).Returns(Task.FromResult( myMovie));
@@ -76,7 +78,7 @@ namespace Rankt.Tests.ControllerTests
 
             Assert.Equal(myMovie.Name, "" + resultContent["name"]);
             Assert.Equal(myMovie.Overview, "" + resultContent["overview"]);
-            Assert.Equal(myMovie.ReleaseDate.Value.Year, (int)resultContent["release_date"]);
+            Assert.Equal(yearToReturn, (int)resultContent["release_date"]);
 
             mockRepo.Verify(x => x.GetById(2), Times.Once);
         }

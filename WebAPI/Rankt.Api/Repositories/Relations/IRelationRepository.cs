@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Model.Movies;
 using DataModel.Base;
 using DataModel.Genres;
 using DataModel.Movies;

@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Model.Movies;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;
 using DataModel.Movies;

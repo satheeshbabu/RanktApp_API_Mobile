@@ -19,7 +19,8 @@ CREATE TABLE [dbo].[tblMovie] (
 	[TMDB_ID]		   BIGINT,
 	[IMDB_ID] 		   NVARCHAR (200) NOT NULL,
 	[TMDB_Poster_Path] NVARCHAR (200),
-	[TMDB_Backdrop_Path] NVARCHAR (200)
+	[TMDB_Backdrop_Path] NVARCHAR (200),
+	[Date_Updated]		DATETIME NOT NULL
 )
 CREATE TABLE [dbo].[tblRelation](
 	[ID]	   BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
