@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rankt.Droid", "..\Android\Rankt.Droid\Rankt.Droid.csproj", "{BD56E4D8-4B7C-49EA-A5BE-2DC711CB5842}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Model", "..\Common\Model\Common.Model.csproj", "{EC86D396-E143-45D3-A550-C94F627871DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{BD56E4D8-4B7C-49EA-A5BE-2DC711CB5842}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD56E4D8-4B7C-49EA-A5BE-2DC711CB5842}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD56E4D8-4B7C-49EA-A5BE-2DC711CB5842}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EC86D396-E143-45D3-A550-C94F627871DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC86D396-E143-45D3-A550-C94F627871DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC86D396-E143-45D3-A550-C94F627871DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC86D396-E143-45D3-A550-C94F627871DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
