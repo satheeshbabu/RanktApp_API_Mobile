@@ -56,9 +56,9 @@ namespace Rankt.Tests.ControllerTests
         [Fact]
         public async Task Movie_Found_For_Movie_Id()
         {
-            var yearToReturn = 2015;
+            var dateToReturn = new DateTime(2011, 10, 10);
 
-            var myMovie = Movie.Instanciate("It", "Bad clown", new DateTime(yearToReturn, 10,10), 123, 12345, "tt123123", "posterPath",
+            var myMovie = Movie.Instanciate("It", "Bad clown", dateToReturn, 123, 12345, "tt123123", "posterPath",
                 "backdropPath", DateTime.Now);
 
             var mockRepo = new Mock<IMovieRepository>();
@@ -78,7 +78,7 @@ namespace Rankt.Tests.ControllerTests
 
             Assert.Equal(myMovie.Name, "" + resultContent["name"]);
             Assert.Equal(myMovie.Overview, "" + resultContent["overview"]);
-            Assert.Equal(yearToReturn, (int)resultContent["release_date"]);
+            Assert.Equal(dateToReturn, DateTime.Parse(resultContent["release_date"]+""));
 
             mockRepo.Verify(x => x.GetById(2), Times.Once);
         }

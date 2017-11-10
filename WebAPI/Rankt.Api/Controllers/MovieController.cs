@@ -14,6 +14,9 @@ using TrakkerApp.Api.Controllers.HelperClasses;
 
 namespace Rankt.Api.Controllers
 {
+    //TODO add this for culture, manage in React App
+    ///?culture=fr-FR
+
     [EnableCors("SiteCorsPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]

@@ -61,7 +61,7 @@ namespace Common.Model.Movies
                 {"name", Name},
                 { "id", Id},
                 { "overview", Overview},
-                { "release_date", ReleaseDate?.Year},
+                { "release_date", ReleaseDate},
                 {"tmdb_poster_path", TmdbPosterPath },
                 {"imdb_id", ImdbId },
                 {"date_upated", DateUpdated }

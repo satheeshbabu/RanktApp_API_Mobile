@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rankt.Tests.DbTests", "..\W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rankt.Tests.ControllerTests", "..\WebAPI\Rankt.Tests.ControllerTests\Rankt.Tests.ControllerTests.csproj", "{260830D2-1C04-4165-8DD6-1AD5F285793A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Model", "..\Common\Model\Common.Model.csproj", "{C6C5F18F-9F34-430D-BCD3-15DAD969B6C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Model", "..\Common\Model\Common.Model.csproj", "{C6C5F18F-9F34-430D-BCD3-15DAD969B6C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{51346749-4705-444E-AD21-B1520CE908CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51346749-4705-444E-AD21-B1520CE908CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51346749-4705-444E-AD21-B1520CE908CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{591E4B6E-797D-40B6-81A9-F3CFCDDB21AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{591E4B6E-797D-40B6-81A9-F3CFCDDB21AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{591E4B6E-797D-40B6-81A9-F3CFCDDB21AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{591E4B6E-797D-40B6-81A9-F3CFCDDB21AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7E8E68F-1248-4310-AD25-6D321583FD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7E8E68F-1248-4310-AD25-6D321583FD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7E8E68F-1248-4310-AD25-6D321583FD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
