@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Model.Movies;
-using Microsoft.Extensions.Configuration;
 using DataModel.Base;
-using DataModel.Movies;
 using DataModel.Overall;
 using DataModel.TVShows;
-using Trakker.Api.Repositories;
+using Microsoft.Extensions.Configuration;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Repositories.Relations;
 using TrakkerApp.Api.Repositories.TVShows;
 
-namespace TrakkerApp.Api.Repositories.Lists
+namespace Rankt.Api.Repositories.Lists
 {
     public class MediaListRepository : BaseRepository<MediaList> , IMediaListRepository
     {

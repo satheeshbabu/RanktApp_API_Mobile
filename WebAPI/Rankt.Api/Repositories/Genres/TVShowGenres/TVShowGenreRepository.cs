@@ -4,12 +4,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using DataModel.Base;
 using DataModel.Genres;
-using Trakker.Api.Repositories;
+using Microsoft.Extensions.Configuration;
+using TrakkerApp.Api.Repositories.Genres.TVShowGenres;
 
-namespace TrakkerApp.Api.Repositories.Genres.TVShowGenres
+namespace Rankt.Api.Repositories.Genres.TVShowGenres
 {
     public class TVShowGenreRepository : BaseRepository<TVShowGenre>, ITVShowGenreRepository
     {

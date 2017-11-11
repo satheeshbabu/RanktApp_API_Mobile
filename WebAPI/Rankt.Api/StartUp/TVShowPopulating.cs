@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using DataModel.Base;
 using DataModel.Genres;
 using DataModel.TVShows;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
-using TrakkerApp.Api.Repositories.Genres;
-using TrakkerApp.Api.Repositories.Genres.MovieGenres;
+using Rankt.Api.Repositories.Genres.TVShowGenres;
 using TrakkerApp.Api.Repositories.Genres.TVShowGenres;
 using TrakkerApp.Api.Repositories.Relations;
 using TrakkerApp.Api.Repositories.TVShows;
 
-namespace TrakkerApp.Api.StartUp
+namespace Rankt.Api.StartUp
 {
     public class TVShowPopulating
     {

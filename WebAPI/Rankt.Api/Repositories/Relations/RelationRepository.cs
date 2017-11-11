@@ -13,6 +13,7 @@ using DataModel.Movies;
 using DataModel.Overall;
 using DataModel.TVShows;
 using Microsoft.Extensions.Caching.Memory;
+using Rankt.Api.Repositories;
 using Trakker.Api.Repositories;
 
 namespace TrakkerApp.Api.Repositories.Relations

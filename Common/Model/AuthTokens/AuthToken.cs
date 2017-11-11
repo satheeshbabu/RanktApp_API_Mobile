@@ -39,6 +39,11 @@ namespace Common.Model.AuthTokens
             return new AuthToken(0, token, userId, createdDate, lastUsedDate, expiryDate);
         }
 
+        public bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
+
         public override long GetEntityCategoryId()
         {
             return ENTITY_CATEGORY_ID;

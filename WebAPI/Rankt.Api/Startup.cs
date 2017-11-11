@@ -9,10 +9,10 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Rankt.Api.Repositories.Lists;
 using Trakker.Api.Repositories.Movies;
 using Trakker.Api.Singletons;
 using Trakker.Api.StartUp;
-using TrakkerApp.Api.Repositories.Lists;
 using TrakkerApp.Api.Repositories.Relations;
 
 namespace Rankt.Api

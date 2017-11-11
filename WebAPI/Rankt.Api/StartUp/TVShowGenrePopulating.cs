@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataModel.Base;
 using DataModel.Genres;
 using Newtonsoft.Json.Linq;
+using Rankt.Api.Repositories.Genres.TVShowGenres;
 using TrakkerApp.Api.Repositories.Genres.TVShowGenres;
 
 namespace TrakkerApp.Api.StartUp

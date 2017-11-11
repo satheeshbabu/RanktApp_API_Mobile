@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
+using Rankt.Api.Repositories.Genres.TVShowGenres;
+using Rankt.Api.StartUp;
 using Trakker.Api.Repositories.Genres.MovieGenres;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Repositories.Categories;

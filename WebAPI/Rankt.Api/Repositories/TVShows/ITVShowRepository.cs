@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataModel.TVShows;
+using Rankt.Api.Repositories;
 using Trakker.Api.Repositories;
 
 namespace TrakkerApp.Api.Repositories.TVShows

@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using DataModel.Base;
-using DataModel.Movies;
 using DataModel.Overall;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
+using Rankt.Api.Repositories.Lists;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Parsers.Imdb;
-using TrakkerApp.Api.Repositories.Genres.MovieGenres;
-using TrakkerApp.Api.Repositories.Lists;
 using TrakkerApp.Api.Repositories.Relations;
 using TrakkerApp.Api.Repositories.TVShows;
+using TrakkerApp.Api.StartUp;
 
-namespace TrakkerApp.Api.StartUp
+namespace Rankt.Api.StartUp
 {
     public class MediaListPopulating
     {

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
+using Rankt.Api.Repositories;
 using Trakker.Api.Repositories.Genres.MovieGenres;
 using Trakker.Api.Singletons;
 using Trakker.Api.StartUp;

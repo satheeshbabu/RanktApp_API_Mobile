@@ -3,19 +3,15 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
-using DataModel.Movies;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
-using Rankt.Api.Controllers;
-using Trakker.Api.Controllers;
+using Rankt.Api.Repositories.Lists;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
-using TrakkerApp.Api.Repositories.Lists;
 using TrakkerApp.Api.Repositories.Relations;
 
-namespace TrakkerApp.Api.Controllers
+namespace Rankt.Api.Controllers
 {
     [EnableCors("SiteCorsPolicy")]
     [Produces("application/json")]

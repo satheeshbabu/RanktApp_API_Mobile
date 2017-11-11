@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Common.Model.Users;
+using Trakker.Api.Repositories;
 
-namespace Trakker.Api.Repositories.Users
+namespace Rankt.Api.Repositories.Users
 {
     public interface IUserRepository : IBaseRepository<User>
     {

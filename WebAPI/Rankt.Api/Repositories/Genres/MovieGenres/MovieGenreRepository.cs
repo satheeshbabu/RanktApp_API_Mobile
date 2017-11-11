@@ -8,6 +8,7 @@ using DataModel.Base;
 using DataModel.Genres;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
+using Rankt.Api.Repositories;
 using TrakkerApp.Api.Repositories.Genres.MovieGenres;
 
 namespace Trakker.Api.Repositories.Genres.MovieGenres

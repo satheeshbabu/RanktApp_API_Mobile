@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataModel.Overall;
-using Trakker.Api.Repositories;
 
-namespace TrakkerApp.Api.Repositories.Lists
+namespace Rankt.Api.Repositories.Lists
 {
     public interface IMediaListRepository : IBaseRepository<MediaList>
     {

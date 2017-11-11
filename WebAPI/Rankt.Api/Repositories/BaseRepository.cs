@@ -1,11 +1,10 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 using DataModel.Base;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 
-namespace Trakker.Api.Repositories
+namespace Rankt.Api.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {

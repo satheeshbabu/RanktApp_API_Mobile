@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DataModel.Movies;
-using TrakkerApp.Api.Repositories;
 
-namespace Trakker.Api.Repositories.Movies
+namespace Rankt.Api.Repositories.Movies
 {
     public interface IMovieCollectionRepository : IBaseRepository<MovieCollection>
     {

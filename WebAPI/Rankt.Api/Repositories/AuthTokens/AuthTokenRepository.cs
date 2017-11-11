@@ -9,7 +9,6 @@ namespace Rankt.Api.Repositories.AuthTokens
 {
     public class AuthTokenRepository: BaseRepository<AuthToken>, IAuthTokenRepository
     {
-        private IAuthTokenRepository _authTokenRepositoryImplementation;
         private const string TABLE_NAME = "tblAuthToken";
         private const string ID_FIELD_NAME = "ID";
         private const string FIELD_TOKEN = "Token";

@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Model.AuthTokens;
 using DataModel.Attributes;
 using DataModel.Base;
 using Newtonsoft.Json.Linq;
@@ -17,6 +18,8 @@ namespace Common.Model.Users
         public DateTime UpdatedDate { get; set; }
         public bool EmailVerified { get; set; }
         public DateTime LastLoginDate { get; set; }
+
+        public AuthToken AuthToken { get; set; }
 
         private User(long id, string username, string password, string emailAddress,
             DateTime createdDate, DateTime updatedDate,bool emailVerified , DateTime lastLoginDate)

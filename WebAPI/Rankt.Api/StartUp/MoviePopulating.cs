@@ -11,6 +11,7 @@ using DataModel.Genres;
 using DataModel.Movies;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
+using Rankt.Api.Repositories.Movies;
 using Trakker.Api.Repositories.Genres.MovieGenres;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Repositories.Genres;

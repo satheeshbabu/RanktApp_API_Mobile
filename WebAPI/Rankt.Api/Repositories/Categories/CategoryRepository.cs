@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;
+using Rankt.Api.Repositories;
 using Trakker.Api.Repositories;
 
 namespace TrakkerApp.Api.Repositories.Categories

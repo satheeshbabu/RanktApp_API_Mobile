@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;
 using DataModel.TVShows;
+using Rankt.Api.Repositories;
 using Trakker.Api.Repositories;
 
 namespace TrakkerApp.Api.Repositories.TVShows
