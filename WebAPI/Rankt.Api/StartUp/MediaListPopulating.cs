@@ -30,10 +30,10 @@ namespace Rankt.Api.StartUp
         {
             _configuration = configuration;
             _cache = cache;
-            _movieRepository = new MovieRepository(configuration,null);
+            _movieRepository = new MovieRepository(configuration,cache);
             _relationRepository = new RelationRepository(configuration, _cache);
-            _mediaListRepository = new MediaListRepository(configuration);
-            _tvShowRepository = new TVShowRepository(configuration);
+            _mediaListRepository = new MediaListRepository(configuration, _cache);
+            _tvShowRepository = new TVShowRepository(configuration, _cache);
         }
 
         public async Task CreateImdbMovieList(string listId, string listTitle)

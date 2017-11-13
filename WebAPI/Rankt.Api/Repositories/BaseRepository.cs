@@ -12,13 +12,6 @@ namespace Rankt.Api.Repositories
         protected readonly IConfiguration Configuration;
         protected readonly IMemoryCache MemoryCache;
 
-        protected BaseRepository(IConfiguration configuration)
-        {
-            Configuration = configuration;
-            ConnectionString = configuration["ConnectionStrings:DefaultConnection"];
-            MemoryCache = null;
-
-        }
 
         protected BaseRepository(IConfiguration configuration, IMemoryCache memoryCache)
         {

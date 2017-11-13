@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using DataModel.Base;
 using DataModel.Movies;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 
 namespace Rankt.Api.Repositories.Movies
@@ -30,7 +31,7 @@ namespace Rankt.Api.Repositories.Movies
 
         private SqlConnection _connection;
 
-        public MovieCollectionRepository(IConfiguration configuration) : base(configuration)
+        public MovieCollectionRepository(IConfiguration configuration, IMemoryCache memoryCache) : base(configuration, memoryCache)
         {
 
         }

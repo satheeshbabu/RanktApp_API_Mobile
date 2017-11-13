@@ -39,8 +39,8 @@ namespace Rankt.Api.Repositories.Users
         {
         }
 
-        private async Task<IEnumerable<User>> GetList(SqlConnection connection, string strSql
-            , List<SqlParameter> parameters)
+        private async Task<IEnumerable<User>> GetList(SqlConnection connection, string strSql,
+            List<SqlParameter> parameters)
         {
             var users = new List<User>();
             try
@@ -58,7 +58,6 @@ namespace Rankt.Api.Repositories.Users
                     {
                         var user = SerializeFromReader(reader);
                         //TODO Get Auth Token
-                        //await GetMovieGenres(movie);
 
                         users.Add(user);
                     }
@@ -146,8 +145,9 @@ namespace Rankt.Api.Repositories.Users
                     new SqlParameter("@created", entity.CreatedDate),
                     new SqlParameter("@updated", entity.UpdatedDate),
                     new SqlParameter("@emailVerified", entity.EmailVerified),
-                    new SqlParameter("@lastLogin", DBNull.Value),
-                    
+                    entity.LastLoginDate.HasValue
+                        ? new SqlParameter("@releaseDate", entity.LastLoginDate)
+                        : new SqlParameter("@releaseDate", DBNull.Value)
                 };
 
                 var command = new SqlCommand(insertSql, connection);

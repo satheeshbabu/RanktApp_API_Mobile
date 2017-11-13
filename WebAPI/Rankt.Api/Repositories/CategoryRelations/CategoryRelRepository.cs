@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;
+using Microsoft.Extensions.Caching.Memory;
 using Rankt.Api.Repositories;
 using Trakker.Api.Repositories;
 
@@ -25,7 +26,7 @@ namespace TrakkerApp.Api.Repositories.CategoryRelations
 
         private SqlConnection _connection;
 
-        public CategoryRelRepository(IConfiguration configuration) : base(configuration)
+        public CategoryRelRepository(IConfiguration configuration, IMemoryCache memoryCache) : base(configuration, memoryCache)
         {
         }
 

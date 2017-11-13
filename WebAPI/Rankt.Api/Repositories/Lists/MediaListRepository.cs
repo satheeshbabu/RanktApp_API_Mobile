@@ -8,6 +8,7 @@ using Common.Model.Movies;
 using DataModel.Base;
 using DataModel.Overall;
 using DataModel.TVShows;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Repositories.Relations;
@@ -39,7 +40,7 @@ namespace Rankt.Api.Repositories.Lists
 
         private SqlConnection _connection;
 
-        public MediaListRepository(IConfiguration configuration) : base(configuration)
+        public MediaListRepository(IConfiguration configuration, IMemoryCache memoryCache) : base(configuration, memoryCache)
         {
 
         }
@@ -120,7 +121,7 @@ namespace Rankt.Api.Repositories.Lists
                 mediaList.GetEntityCategoryId(), mediaList.GetId());
             //TODO FIX!!!!
             var movieRepository = new MovieRepository(Configuration,MemoryCache);
-            var tvShowRepository = new TVShowRepository(Configuration);
+            var tvShowRepository = new TVShowRepository(Configuration, MemoryCache);
 
             foreach (var relation in relList)
             {

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataModel.Base;
 using DataModel.Genres;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using TrakkerApp.Api.Repositories.Genres.TVShowGenres;
 
@@ -27,7 +28,7 @@ namespace Rankt.Api.Repositories.Genres.TVShowGenres
 
         private SqlConnection _connection;
 
-        public TVShowGenreRepository(IConfiguration configuration) : base(configuration)
+        public TVShowGenreRepository(IConfiguration configuration, IMemoryCache memoryCache) : base(configuration, memoryCache)
         {
         }
         

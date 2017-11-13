@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DataModel.Base;
 using DataModel.TVShows;
+using Microsoft.Extensions.Caching.Memory;
 using Rankt.Api.Repositories;
 using Trakker.Api.Repositories;
 
@@ -38,7 +39,7 @@ namespace TrakkerApp.Api.Repositories.TVShows
             TABLE_NAME + "." + FIELD_TMDB_POSTER_PATH + ", " +
             TABLE_NAME + "." + FIELD_TMDB_BACKDROP_PATH + " ";
 
-        public TVShowRepository(IConfiguration configuration) : base(configuration)
+        public TVShowRepository(IConfiguration configuration, IMemoryCache memoryCache) : base(configuration, memoryCache)
         {
 
         }

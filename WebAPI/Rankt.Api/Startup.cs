@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Rankt.Api.Repositories.Lists;
+using Rankt.Api.Repositories.Users;
 using Trakker.Api.Repositories.Movies;
 using Trakker.Api.Singletons;
 using Trakker.Api.StartUp;
@@ -53,6 +54,7 @@ namespace Rankt.Api
             services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddTransient<IMediaListRepository, MediaListRepository>();
             services.AddTransient<IRelationRepository, RelationRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddMvc();
         }

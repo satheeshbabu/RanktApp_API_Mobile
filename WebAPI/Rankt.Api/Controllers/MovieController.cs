@@ -66,7 +66,6 @@ namespace Rankt.Api.Controllers
 
             Console.WriteLine("Returning List of " + movies.Count+ " movies");
             var content = Content(jObject.ToString(), "application/json");
-            content.StatusCode = (int)HttpStatusCode.OK;
             return content;
         }
 
@@ -93,7 +92,6 @@ namespace Rankt.Api.Controllers
 //            }
 
             var content = Content(movie.ToJsonToken().ToString(), "application/json");
-            content.StatusCode = (int) HttpStatusCode.OK;
             return content;
         }
 

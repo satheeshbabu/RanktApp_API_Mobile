@@ -33,7 +33,7 @@ namespace TrakkerApp.Api.StartUp
             _movieRepository = new MovieRepository(configuration, cache);
             _relationRepository = new RelationRepository(configuration, cache);
             _movieGenreRepository = new MovieGenreRepository(configuration, cache);
-            _moviecollectionRepository = new MovieCollectionRepository(configuration);
+            _moviecollectionRepository = new MovieCollectionRepository(configuration, cache);
         }
 
         public async Task AddMovie(int movieId)

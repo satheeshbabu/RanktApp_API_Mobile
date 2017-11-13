@@ -65,6 +65,9 @@
     <Content Include="Migrations\003_Movie_And_Relation_Table.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Migrations\006_Elo_List_And_Items.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Migrations\005_User_And_Auth_Token.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

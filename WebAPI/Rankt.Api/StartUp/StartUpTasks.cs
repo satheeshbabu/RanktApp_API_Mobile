@@ -20,8 +20,8 @@ namespace Trakker.Api.StartUp
 
         public static async Task TasksOnStartUp(IConfiguration configuration, IMemoryCache memoryCache)
         {
-            var categoryMapping = new CategoryMapping(new CategoryRepository(configuration),
-                new CategoryRelRepository(configuration));
+            var categoryMapping = new CategoryMapping(new CategoryRepository(configuration,memoryCache),
+                new CategoryRelRepository(configuration,memoryCache));
 
             await categoryMapping.PopulateAllCategories();
 
@@ -33,7 +33,7 @@ namespace Trakker.Api.StartUp
             {
                 await MovieGenrePopulating.PopulateTmdbMovieGenres(new MovieGenreRepository(configuration,
                     memoryCache));
-                await TVShowGenrePopulating.PopulateTmdbTVShowGenres(new TVShowGenreRepository(configuration));
+                await TVShowGenrePopulating.PopulateTmdbTVShowGenres(new TVShowGenreRepository(configuration,memoryCache));
 
                 await new MoviePopulating(configuration, memoryCache).PopulateManyMovies();
 
@@ -45,19 +45,19 @@ namespace Trakker.Api.StartUp
 //                Console.WriteLine("This movie is " + movie.Name);
 //            }
 //
-//            await new MediaListPopulating(connectionString).CreateImdbMovieList("ls051203792",
-//                "\"The Great Movies\" by Roger Ebert");
-//            await new MediaListPopulating(connectionString).CreateImdbMovieList("ls055315312",
-//                "Top 95 Spy/Thriller Movies");
-//
-//            await new MediaListPopulating(connectionString).CreateImdbTVShowList("ls004499891",
-//                "Best Of The Best TV Shows of 2000-2017");
-//            
-//            await new MediaListPopulating(connectionString).CreateImdbTVShowList("ls059270048",
-//                "TV Series I Would Watch Again (2000-2014)"); 
-//            
-//            await new MediaListPopulating(connectionString).CreateImdbTVShowList("ls051600015",
-//                "250: Top TV Series, HBO, Showtime:");
+            await new MediaListPopulating(configuration, memoryCache).CreateImdbMovieList("ls051203792",
+                "\"The Great Movies\" by Roger Ebert");
+            await new MediaListPopulating(configuration, memoryCache).CreateImdbMovieList("ls055315312",
+                "Top 95 Spy/Thriller Movies");
+
+            await new MediaListPopulating(configuration, memoryCache).CreateImdbTVShowList("ls004499891",
+                "Best Of The Best TV Shows of 2000-2017");
+            
+            await new MediaListPopulating(configuration, memoryCache).CreateImdbTVShowList("ls059270048",
+                "TV Series I Would Watch Again (2000-2014)"); 
+            
+            await new MediaListPopulating(configuration, memoryCache).CreateImdbTVShowList("ls051600015",
+                "250: Top TV Series, HBO, Showtime:");
 
             }
         }

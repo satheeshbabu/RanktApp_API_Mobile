@@ -1,0 +1,22 @@
+﻿
+CREATE TABLE [dbo].[tblEloList] (
+    [ID]	   BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    [Name]		   NVARCHAR (200) NOT NULL,	
+	[UserId]		BIGINT NOT NULL,	
+	[Date_Created]		DATETIME NOT NULL,
+	[Date_Updated]		DATETIME NOT NULL
+)
+CREATE TABLE [dbo].[tblEloListItem] (
+    [ID]	   BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[CategoryId] BIGINT NOT NULL,
+	[EntityID] BIGINT NOT NULL,
+	[EloRanking] INT
+)
+
+CREATE TABLE [dbo].[tblEloBattle] (
+    [ID]	   BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[EloListID] BIGINT NOT NULL,
+	[LeftEloItemID] BIGINT NOT NULL,
+	[RightEloItemID] BIGINT NOT NULL,
+	[WinnerItem] NVARCHAR(1)
+)

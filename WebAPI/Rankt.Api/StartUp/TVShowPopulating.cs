@@ -25,9 +25,9 @@ namespace Rankt.Api.StartUp
 
         public TVShowPopulating(IConfiguration configuration, IMemoryCache cache)
         {
-            _tvShowRepository = new TVShowRepository(configuration);
+            _tvShowRepository = new TVShowRepository(configuration,cache);
             _relationRepository = new RelationRepository(configuration, cache);
-            _tvShowGenreRepository = new TVShowGenreRepository(configuration);
+            _tvShowGenreRepository = new TVShowGenreRepository(configuration,cache);
         }
         
         public async Task AddTVShow(int movieId)
