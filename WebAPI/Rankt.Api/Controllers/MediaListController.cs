@@ -7,6 +7,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
 using Rankt.Api.Repositories.Lists;
+using Rankt.Api.Repositories.Movies;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
 using TrakkerApp.Api.Repositories.Relations;
@@ -18,7 +19,6 @@ namespace Rankt.Api.Controllers
     [Route("api/[controller]")]
     public class MediaListController : Controller
     {
-        //TODO DOESNT FEEL RIGHT, NEEDS TO BE ALTERED
         private readonly IMediaListRepository _repository;
         private readonly IRelationRepository _relationRepository;
         private readonly IMovieRepository _movieRepository;

@@ -6,12 +6,15 @@ using Newtonsoft.Json.Linq;
 
 namespace Common.Model.Users
 {
+    #region User_API_Body_Creators
     public class CreateUser
     {
         public string Username { get; set; }
         public string Password { get; set; }
         public string EmailAddress { get; set; }
     }
+
+    #endregion
 
     public class User : BaseEntity
     {
@@ -60,7 +63,17 @@ namespace Common.Model.Users
 
         public override JObject ToJsonToken()
         {
-            throw new System.NotImplementedException();
+            var token = new JObject
+            {
+                { "username", Username},
+                { "id", Id},
+                { "email", EmailAddress},
+                {"lastLogin", LastLoginDate },
+                {"isEmailVerified", EmailVerified }
+                
+            };
+            
+            return token;
         }
     }
 }

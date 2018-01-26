@@ -15,7 +15,7 @@ namespace Rankt.Api.Repositories.Users
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        private const string TABLE_NAME = "tblAuthToken";
+        private const string TABLE_NAME = "tblUser";
         private const string ID_FIELD_NAME = "ID";
         private const string FIELD_USERNAME = "Username";
         private const string FIELD_PASSWORD = "Password";
@@ -139,15 +139,15 @@ namespace Rankt.Api.Repositories.Users
 
                 var parameters = new List<SqlParameter>
                 {
-                    new SqlParameter("@name", entity.Username),
+                    new SqlParameter("@username", entity.Username),
                     new SqlParameter("@password", entity.Password),
                     new SqlParameter("@email", entity.EmailAddress),
                     new SqlParameter("@created", entity.CreatedDate),
                     new SqlParameter("@updated", entity.UpdatedDate),
                     new SqlParameter("@emailVerified", entity.EmailVerified),
                     entity.LastLoginDate.HasValue
-                        ? new SqlParameter("@releaseDate", entity.LastLoginDate)
-                        : new SqlParameter("@releaseDate", DBNull.Value)
+                        ? new SqlParameter("@lastLogin", entity.LastLoginDate)
+                        : new SqlParameter("@lastLogin", DBNull.Value)
                 };
 
                 var command = new SqlCommand(insertSql, connection);

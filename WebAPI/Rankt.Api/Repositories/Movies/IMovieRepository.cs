@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Model.Movies;
-using DataModel.Movies;
-using Rankt.Api.Repositories;
-using TrakkerApp.Api.Repositories;
 
-namespace Trakker.Api.Repositories.Movies
+namespace Rankt.Api.Repositories.Movies
 {
     public interface IMovieRepository : IBaseRepository<Movie>
     {

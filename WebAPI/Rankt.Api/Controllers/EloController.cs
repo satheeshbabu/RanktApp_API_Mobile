@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Common.Model.Elo;
+using DataModel.Base;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
+using Rankt.Api.Repositories.Elo;
 using Rankt.Api.Repositories.Movies;
 using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
@@ -21,16 +24,16 @@ namespace Rankt.Api.Controllers
     [EnableCors("SiteCorsPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class MovieController : Controller
+    public class EloController : Controller
     {
-        private readonly IMovieRepository _repository;
+        private readonly IEloListRepository _repository;
 
         private readonly IStringLocalizer<SharedResources> _localizer;
         private readonly IMemoryCache _memoryCache;
 
         private const string CacheMovie = "CACHE:MOVIE";
 
-        public MovieController(IMovieRepository repository, IStringLocalizer<SharedResources> localizer, IMemoryCache memoryCache)
+        public EloController(IEloListRepository repository, IStringLocalizer<SharedResources> localizer, IMemoryCache memoryCache)
         {
             _repository = repository;
             _localizer = localizer;
@@ -39,35 +42,36 @@ namespace Rankt.Api.Controllers
 
         // GET: api/values
         [HttpGet]
-        public async Task<ActionResult> GetAllMovies([FromQuery]QueryPagenationParameters pageParameters)
+        public async Task<ActionResult> GetAllListsForUser([FromQuery]QueryPagenationParameters pageParameters)
         {
-            var movies = await _repository.GetAllMovies();
-
-            if (movies == null || movies.Count == 0)
-            {
-                string message = _localizer["controllers.movie.movie_not_found"];
-                var token = new JObject { { "message", message } };
-
-                var errorContent = Content(token.ToString(), "application/json");
-                errorContent.StatusCode = (int)HttpStatusCode.NotFound;
-                return errorContent;
-            }
-
-            var array = new JArray();
-            foreach (var movie in movies)
-            {
-                array.Add(movie.ToJsonToken());
-            }
-
-            var jObject = new JObject
-            {
-                {"number_movies", movies.Count},
-                { "movies", array}
-            };
-
-            Console.WriteLine("Returning List of " + movies.Count+ " movies");
-            var content = Content(jObject.ToString(), "application/json");
-            return content;
+//            var movies = await _repository.GetAllMovies();
+//
+//            if (movies == null || movies.Count == 0)
+//            {
+//                string message = _localizer["controllers.movie.movie_not_found"];
+//                var token = new JObject { { "message", message } };
+//
+//                var errorContent = Content(token.ToString(), "application/json");
+//                errorContent.StatusCode = (int)HttpStatusCode.NotFound;
+//                return errorContent;
+//            }
+//
+//            var array = new JArray();
+//            foreach (var movie in movies)
+//            {
+//                array.Add(movie.ToJsonToken());
+//            }
+//
+//            var jObject = new JObject
+//            {
+//                {"number_movies", movies.Count},
+//                { "movies", array}
+//            };
+//
+//            Console.WriteLine("Returning List of " + movies.Count+ " movies");
+//            var content = Content(jObject.ToString(), "application/json");
+//            return content;
+            return Json("ok");
         }
 
         // GET api/values/5
@@ -98,8 +102,26 @@ namespace Rankt.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<ActionResult> Post([FromBody]CreateEloList createEloList)
         {
+            //TODO ensure list name doesnt exists
+            //TODO get user from passed in TOKEN
+
+            var currentDateTime = DateTime.UtcNow;
+
+            var eloList = EloList.Instanciate(createEloList.Name, createEloList.UserId, currentDateTime,
+                currentDateTime);
+            //TODO how to wrap save calls
+            var error = await _repository.Save(eloList);
+
+            if (error.ErrorCode == BaseError.Success)
+            {
+                var content = Content(eloList.ToJsonToken().ToString(), "application/json");
+                return content;
+            }
+            
+            return Json("error");
+            
         }
 
         // PUT api/values/5

@@ -21,7 +21,7 @@ namespace DataModel.Base
         public string SimpleName { get; set; }
         public string Status { get; set; }
 
-        //TODO make private
+        
         private Category(long id, string name, string simpleName, string status)
         {
             Id = id;

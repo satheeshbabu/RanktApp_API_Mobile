@@ -14,6 +14,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Rankt.Api.Repositories;
+using Rankt.Api.Repositories.Movies;
 using Trakker.Api.Repositories.Genres.MovieGenres;
 using Trakker.Api.Singletons;
 using Trakker.Api.StartUp;
@@ -235,7 +236,7 @@ namespace Trakker.Api.Repositories.Movies
                                          ", " + FIELD_DATE_UPDATED + ") OUTPUT INSERTED.ID VALUES " +
                                          "(@name, @overview, @releaseDate, @runTime, " +
                                          "@tmdbid, @imdbid, @tmdbPosterPath, @tmdbBackdropPath, @dateUpdated)";
-
+                entity.DateUpdated = DateTime.UtcNow;
                 var parameters = new List<SqlParameter>
                 {
                     new SqlParameter("@name", entity.Name),
@@ -248,7 +249,7 @@ namespace Trakker.Api.Repositories.Movies
                     new SqlParameter("@imdbid", entity.ImdbId),
                     new SqlParameter("@tmdbPosterPath", entity.TmdbPosterPath),
                     new SqlParameter("@tmdbBackdropPath", entity.TmdbBackdropPath),
-                    new SqlParameter("@dateUpdated", DateTime.UtcNow)
+                    new SqlParameter("@dateUpdated", entity.DateUpdated)
                 };
 
                 var command = new SqlCommand(insertSql, connection);

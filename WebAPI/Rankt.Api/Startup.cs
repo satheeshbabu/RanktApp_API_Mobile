@@ -9,7 +9,9 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Rankt.Api.Repositories.Elo;
 using Rankt.Api.Repositories.Lists;
+using Rankt.Api.Repositories.Movies;
 using Rankt.Api.Repositories.Users;
 using Trakker.Api.Repositories.Movies;
 using Trakker.Api.Singletons;
@@ -55,6 +57,7 @@ namespace Rankt.Api
             services.AddTransient<IMediaListRepository, MediaListRepository>();
             services.AddTransient<IRelationRepository, RelationRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IEloListRepository, EloListRepository>();
 
             services.AddMvc();
         }

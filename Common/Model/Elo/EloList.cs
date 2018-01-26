@@ -6,6 +6,15 @@ using Newtonsoft.Json.Linq;
 
 namespace Common.Model.Elo
 {
+    #region User_API_Body_Creators
+    public class CreateEloList
+    {
+        public string Name { get; set; }
+        public long UserId { get; set; }
+    }
+    #endregion
+
+
     public class EloList : BaseEntity
     {
         [Category("ELO_LIST_ENTITY", "Elo List Entity")]
@@ -53,7 +62,16 @@ namespace Common.Model.Elo
 
         public override JObject ToJsonToken()
         {
-            throw new System.NotImplementedException();
+            var token = new JObject
+            {
+                {"name", Name},
+                { "id", Id},
+                { "userId", UserId},
+                {"date_created", DateCreated },
+                {"date_upated", DateUpdated }
+            };
+
+            return token;
         }
     }
 }
