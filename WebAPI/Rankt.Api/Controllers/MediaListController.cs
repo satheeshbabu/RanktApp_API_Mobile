@@ -8,7 +8,6 @@ using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
 using Rankt.Api.Repositories.Lists;
 using Rankt.Api.Repositories.Movies;
-using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
 using TrakkerApp.Api.Repositories.Relations;
 

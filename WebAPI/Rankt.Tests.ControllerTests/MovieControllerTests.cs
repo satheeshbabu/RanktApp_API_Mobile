@@ -11,7 +11,6 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Rankt.Api.Controllers;
 using Rankt.Api.Repositories.Movies;
-using Trakker.Api.Repositories.Movies;
 using Xunit;
 
 namespace Rankt.Tests.ControllerTests

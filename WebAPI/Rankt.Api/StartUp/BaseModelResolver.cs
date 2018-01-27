@@ -5,7 +5,6 @@ using DataModel.Base;
 using DataModel.Movies;
 using DataModel.TVShows;
 using Trakker.Api.Repositories;
-using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Repositories;
 using TrakkerApp.Api.Repositories.TVShows;
 

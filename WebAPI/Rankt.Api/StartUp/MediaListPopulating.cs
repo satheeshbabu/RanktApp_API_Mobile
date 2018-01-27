@@ -7,7 +7,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using Rankt.Api.Repositories.Lists;
-using Trakker.Api.Repositories.Movies;
+using Rankt.Api.Repositories.Movies;
 using TrakkerApp.Api.Parsers.Imdb;
 using TrakkerApp.Api.Repositories.Relations;
 using TrakkerApp.Api.Repositories.TVShows;

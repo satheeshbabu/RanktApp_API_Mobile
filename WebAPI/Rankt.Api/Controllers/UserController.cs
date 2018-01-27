@@ -8,7 +8,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
 using Rankt.Api.Repositories.Users;
-using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
 
 // For more information on enabling Web API for empty projects,

@@ -5,18 +5,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Rankt.Api.Repositories.Elo;
-using Rankt.Api.Repositories.Lists;
-using Rankt.Api.Repositories.Movies;
-using Rankt.Api.Repositories.Users;
-using Trakker.Api.Repositories.Movies;
+using Rankt.Api.Data;
 using Trakker.Api.Singletons;
 using Trakker.Api.StartUp;
-using TrakkerApp.Api.Repositories.Relations;
 
 namespace Rankt.Api
 {
@@ -53,11 +49,9 @@ namespace Rankt.Api
             services.AddMemoryCache();
 
             services.AddSingleton(_ => Configuration);
-            services.AddTransient<IMovieRepository, MovieRepository>();
-            services.AddTransient<IMediaListRepository, MediaListRepository>();
-            services.AddTransient<IRelationRepository, RelationRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IEloListRepository, EloListRepository>();
+
+            services.AddDbContext<RanktContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
         }
@@ -67,12 +61,14 @@ namespace Rankt.Api
         {
             //Need to initialize the list of cache
             TrakkerCache.InitializeCacheList();
+            //
+            ////            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
+            ////            string cs = Configuration["ConnectionStrings:DefaultConnection"];
+            //
+            //            var loadDataTask = StartUpTasks.TasksOnStartUp(Configuration, cache);
+            //            loadDataTask.Wait();
 
-//            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
-//            string cs = Configuration["ConnectionStrings:DefaultConnection"];
-
-            var loadDataTask = StartUpTasks.TasksOnStartUp(Configuration, cache);
-            loadDataTask.Wait();
+            
 
             if (env.IsDevelopment())
             {
