@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json.Linq;
+using Rankt.Api.Controllers.HelperClasses;
 using Rankt.Api.Repositories.Movies;
-using Trakker.Api.Repositories.Movies;
 using TrakkerApp.Api.Controllers.HelperClasses;
 
 // For more information on enabling Web API for empty projects,
@@ -45,12 +45,8 @@ namespace Rankt.Api.Controllers
 
             if (movies == null || movies.Count == 0)
             {
-                string message = _localizer["controllers.movie.movie_not_found"];
-                var token = new JObject { { "message", message } };
-
-                var errorContent = Content(token.ToString(), "application/json");
-                errorContent.StatusCode = (int)HttpStatusCode.NotFound;
-                return errorContent;
+                string message = _localizer["controllers.movie.error.no_movies_found"];
+                return ResponseGenerator.NotFoundResult(message);
             }
 
             var array = new JArray();
@@ -66,8 +62,7 @@ namespace Rankt.Api.Controllers
             };
 
             Console.WriteLine("Returning List of " + movies.Count+ " movies");
-            var content = Content(jObject.ToString(), "application/json");
-            return content;
+            return ResponseGenerator.OkResult(jObject);
         }
 
         // GET api/values/5
@@ -82,18 +77,13 @@ namespace Rankt.Api.Controllers
 
                 if (movie == null)
                 {
-                    string message = _localizer["movieNotFound"];
-                    var token = new JObject {{"message", message}};
-
-                    var errorContent = Content(token.ToString(), "application/json");
-                    errorContent.StatusCode = (int) HttpStatusCode.NotFound;
-                    return errorContent;
+                    //TODO get message key from resourses
+                    string message = _localizer["controllers.movie.error.movie_not_found"];
+                    return ResponseGenerator.NotFoundResult(message);
                 }
 //                _memoryCache.Set(CacheMovie + id, movie, TimeSpan.FromHours(6));
 //            }
-
-            var content = Content(movie.ToJsonToken().ToString(), "application/json");
-            return content;
+            return ResponseGenerator.OkResult(movie);
         }
 
         // POST api/values

@@ -123,4 +123,7 @@
   <data name="controllers.movie.error.movie_not_found" xml:space="preserve">
     <value>No movie was found for provided ID.</value>
   </data>
+  <data name="controllers.movie.error.no_movies_found" xml:space="preserve">
+    <value>No movies were found in the Database</value>
+  </data>
 </root>

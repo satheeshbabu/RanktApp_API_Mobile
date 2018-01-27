@@ -9,6 +9,7 @@ namespace Common.Elo.UnitTests
         [TestMethod]
         public void TestMethod1()
         {
+            Assert.IsTrue(true);
         }
     }
 }

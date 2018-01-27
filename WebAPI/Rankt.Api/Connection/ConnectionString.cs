@@ -13,6 +13,4 @@ namespace TrakkerApp.Api.Connection
                                                      "ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
     }
-
-
 }

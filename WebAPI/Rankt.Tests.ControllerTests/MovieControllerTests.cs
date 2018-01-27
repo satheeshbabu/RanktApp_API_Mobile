@@ -30,10 +30,11 @@ namespace Rankt.Tests.ControllerTests
         [Fact]
         public async Task No_Movies_Found_When_Calling_Get_All_Movies()
         {
-            var notFoundString = "This movie could not be found";
+            const string notFoundKey = "controllers.movie.error.no_movies_found";
+            const string notFoundString = "This movie could not be found";
 
-            mockStringLocaliser.Setup(s => s[It.IsAny<string>()])
-                .Returns(() => new LocalizedString("controllers.movie.movie_not_found", notFoundString));
+            mockStringLocaliser.Setup(s => s[It.Is<string>(c => c.Equals(notFoundKey))])
+                .Returns(() => new LocalizedString(notFoundKey, notFoundString));
             var mockRepo = new Mock<IMovieRepository>();
             mockRepo.Setup(r => r.GetAllMovies()).Returns(Task.FromResult(new List<Movie>()));
 
@@ -43,8 +44,7 @@ namespace Rankt.Tests.ControllerTests
 
             ContentResult contentResult = result as ContentResult;
             
-            Assert.NotEqual(contentResult, null);
-
+            Assert.NotNull(contentResult);
             Assert.Equal((int)HttpStatusCode.NotFound, contentResult.StatusCode);
 
             var resultContent = JObject.Parse(contentResult.Content);
@@ -63,7 +63,7 @@ namespace Rankt.Tests.ControllerTests
                 "backdropPath", DateTime.Now);
 
             var mockRepo = new Mock<IMovieRepository>();
-            mockRepo.Setup(r => r.GetById(It.Is<long>( c => c == 2))).Returns(Task.FromResult( myMovie));
+            mockRepo.Setup(r => r.GetById(It.Is<long>( c => c == 2))).Returns(Task.FromResult(myMovie));
 
             var movieController = new MovieController(mockRepo.Object, mockStringLocaliser.Object, mockMemoryCache.Object);
 
@@ -71,8 +71,7 @@ namespace Rankt.Tests.ControllerTests
 
             ContentResult contentResult = result as ContentResult;
 
-            Assert.NotEqual(contentResult, null);
-
+            Assert.NotNull(contentResult);
             Assert.Equal((int)HttpStatusCode.OK, contentResult.StatusCode);
 
             var resultContent = JObject.Parse(contentResult.Content);

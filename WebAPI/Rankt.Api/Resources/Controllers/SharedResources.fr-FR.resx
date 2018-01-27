@@ -123,4 +123,7 @@
   <data name="controllers.movie.error.movie_not_found" xml:space="preserve">
     <value>Il y a pas de film avec ce ID.</value>
   </data>
+  <data name="controllers.movie.error.no_movies_found" xml:space="preserve">
+    <value>Il y a pas de film trouver.</value>
+  </data>
 </root>

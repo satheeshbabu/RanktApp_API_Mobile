@@ -3,26 +3,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Common.Model.Movies;
 using DataModel.Base;
 using DataModel.Genres;
-using DataModel.Movies;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
-using Rankt.Api.Repositories;
-using Rankt.Api.Repositories.Movies;
 using Trakker.Api.Repositories.Genres.MovieGenres;
 using Trakker.Api.Singletons;
-using Trakker.Api.StartUp;
-using TrakkerApp.Api.Repositories;
-using TrakkerApp.Api.Repositories.Genres.MovieGenres;
 using TrakkerApp.Api.Repositories.Relations;
 
-namespace Trakker.Api.Repositories.Movies
+namespace Rankt.Api.Repositories.Movies
 {
     public class MovieRepository : BaseRepository<Movie>, IMovieRepository
     {
@@ -40,7 +31,7 @@ namespace Trakker.Api.Repositories.Movies
 
         private const string CACHE_MOVIE_ID = "CACHE:MOVIE:ID";
         private const string CACHE_MOVIE_TMDB_ID = "CACHE:MOVIE:TMDBID";
-        private const string CACHE_MOVIE_IMDB_ID = "CACHE:MOVIE:ID";
+        private const string CACHE_MOVIE_IMDB_ID = "CACHE:MOVIE:IMDBID";
         private const string CACHE_MOVIE_RELATIONS = "CACHE:MOVIE:RELATIONS";
         private const string CACHE_MOVIE_GENRES = "CACHE:MOVIE:GENRES";
 
